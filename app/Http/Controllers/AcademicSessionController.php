@@ -2,39 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicSession;
 use Illuminate\Http\Request;
 
 class AcademicSessionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        //fetch all academic sessions
+        $academic_sessions = AcademicSession::all();
+        return view('academic_sessions.index', compact($academic_sessions));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        //display form for new academic session
+        return view('academic_sessions.create');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           ''
+        ]);
     }
 
     /**
