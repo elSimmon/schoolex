@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClassLevel extends Model
+class SubjectCourse extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name', 'code', 'load',
     ];
 
-    public function students(){
-        return $this->hasMany(Student::class);
-    }
 }

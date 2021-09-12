@@ -1,4 +1,4 @@
-<div class="nav nav-pills flex-column adminlinks">
+<div class="nav nav-tabs flex-column adminlinks">
     <a class="nav-link active" href="#">Active Users</a>
     <a class="nav-link " href="#">Academic Sessions/Terms</a>
     <a class="nav-link " href="#">Active Classes/Levels</a>
