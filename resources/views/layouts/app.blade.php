@@ -22,6 +22,7 @@
     <link href="{{ asset('favicon.jpg') }}" type="image/jpg" rel="shortcut icon">
 </head>
 <body>
+@include('sweetalert::alert')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
@@ -98,6 +99,11 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-0">
+                        @include('partials.sidebar')
+                    </div>
             @yield('content')
         </main>
     </div>
