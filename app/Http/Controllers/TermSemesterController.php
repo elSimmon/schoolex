@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicSession;
 use App\Models\TermSemester;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TermSemesterController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //
+        $academic_sessions = AcademicSession::all();
+        $semesters = TermSemester::all();
+        return view('semesters.index', compact('semesters', 'academic_sessions'));
     }
 
     /**
@@ -31,11 +40,29 @@ class TermSemesterController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'academic_session_id' => 'required',
+            'name' => 'required|string',
+            'start' => 'required|date',
+            'finish' => 'required|date',
+        ]);
+
+        DB::table('term_semesters')->where('current', 1)->update(['current'=>0]);
+
+        $semester = new TermSemester();
+        $semester->academic_session_id = $request->academic_session_id;
+        $semester->name = $request->name;
+        $semester->start = $request->start;
+        $semester->finish = $request->finish;
+        $semester->current = 1;
+        $semester->save();
+
+        toast('Great! Semester added!!', 'success');
+        return redirect()->route('all-semesters');
     }
 
     /**
